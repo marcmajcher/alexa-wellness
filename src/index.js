@@ -5,7 +5,7 @@
 const Alexa = require('alexa-sdk');
 const steps = require('./steps');
 
-const APP_ID = 'amzn1.ask.skill.alexaselfcare';
+const APP_ID = 'amzn1.ask.skill.84859e9d-f975-4ce9-bf42-7ee18e28cfcf';
 const DEFAULT_STATE = 'intro';
 
 const handlers = {
