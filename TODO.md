@@ -25,3 +25,18 @@
 | |  |
 |  | |
 | |  |
+
+Other state dialog test:
+
+LaunchRequest
+StateRequestIntent usstate=Vermont
+StateRequestIntent usstate=New%20York
+ISeeIntent animal=bear color=brown
+# AMAZON.HelpIntent
+
+AMAZON.StopIntent
+MyNameIsIntent myName=
+MyNameIsIntent myName=Madeline
+? StateRequestIntent usstate=Texas
+RecapIntent
+AMAZON.StopIntent

@@ -10,15 +10,19 @@ const DEFAULT_STATE = 'intro';
 
 const handlers = {
   LaunchRequest: function LaunchRequest() {
-    this.attributes.state = DEFAULT_STATE;
-    this.emit(':ask', steps.intro.text, steps.intro.reprompt);
+    this.attributes.resume = (this.attributes.state.length > 0);
+    if (this.attributes.resume) {
+      this.emit(':ask', steps.resume, steps.resume);
+    }
+    else {
+      this.attributes.state = DEFAULT_STATE;
+      this.emit('CareIntent');
+    }
   },
   SessionEndedRequest: function SessionEndedRequest() {
     this.emit(':tell', steps.stop);
   },
   CareIntent: function CareIntent() {
-    // this.event.request.intent.slots.SLOTNAME.value
-    // this.attributes[key]
     const state = this.attributes.state;
     if (state && steps[state]) {
       this.emit(':ask', steps[state].text, steps[state].reprompt || steps.reprompt);
@@ -26,8 +30,6 @@ const handlers = {
     else {
       this.emit('LaunchRequest');
     }
-    //   // incorrect request type
-    //   this.emit(':ask', NOT_FOUND_MESSAGE, NOT_FOUND_REPROMPT);
   },
   'AMAZON.HelpIntent': function HelpIntent() {
     this.emit(':ask', steps.help.text, steps.help.reprompt);
@@ -39,11 +41,16 @@ const handlers = {
     this.emit(':tell', steps.stop);
   },
   'AMAZON.YesIntent': function YesIntent() {
-    const state = this.attributes.state;
-    this.attributes.state = steps[state].next || DEFAULT_STATE;
+    if (!this.attributes.resume) {
+      this.attributes.state = steps[this.attributes.state].yes || DEFAULT_STATE;
+    }
+    this.attributes.resume = false;
     this.emit('CareIntent');
   },
-  'AMAZON.NoIntent': function NoIntent() {},
+  'AMAZON.NoIntent': function NoIntent() {
+    this.attributes.state = steps[this.attributes.state].no || DEFAULT_STATE;
+    this.emit('CareIntent');
+  },
 };
 
 exports.handler = (event, context) => {

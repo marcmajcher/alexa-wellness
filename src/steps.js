@@ -14,18 +14,18 @@ module.exports = {
     Set aside some time - maybe an hour total - to allow yourself to work through each step. Don't rush or skip ahead - just follow the directions. Self care is important, and you deserve to devote some time to it.
     You may want to go through this routine as soon as you wake up, as a preventative measure. Are you ready to begin?`,
     reprompt: `Are you ready to begin?`,
-    next: 'step001'
+    yes: 'step001'
   },
 
   intro: {
     text: `I'm sorry you're not feeling well. Let's take some time to work through some steps to help you feel better. Are you ready to begin?`,
     reprompt: `Are you ready to begin?`,
-    next: 'step001'
+    yes: 'step001'
   },
 
   step001: {
     text: `Have you eaten in the last four hours?`,
-    next: 'step002',
+    yes: 'step002',
     prompts: [{
         text: `I could use a snack.`,
         target: 'step001a'
@@ -41,13 +41,13 @@ module.exports = {
   step001a: {
     text: `When you need a snack, just pop some easy food in your mouth.
 If there's a specific food you want, it's okay to eat it! You don't have to eat perfectly healthy all the time-- no one does! Just also use your brain a little, and notice the quantity you're eating, and how healthy it is for you. You're probably just fine at trusting your gut and knowing what your body needs.`,
-    next: 'step002'
+    yes: 'step002'
   },
 
   step001b: {
     text: `You haven't eaten in a little while, and your body needs fuel. It's time for breakfast, lunch, or dinner.
 If there's a specific food you want, it's okay to eat it! You don't have to eat perfectly healthy all the time-- no one does! Just also use your brain a little, and notice the quantity you're eating, and how healthy it is for you. You're probably just fine at trusting your gut and knowing what your body needs.`,
-    next: 'step002',
+    yes: 'step002',
     prompts: [{
       text: `I need some help!`,
       target: 'step001c'
@@ -75,12 +75,12 @@ If you're going to cook on your own, you have to decide what to make. A friend, 
 -Canned soup
 -Salad
 -Boxed mashed potatoes`,
-    next: 'step002'
+    yes: 'step002'
   },
 
   step002: {
     text: `Have you taken any medication you need to take?`,
-    next: 'step003',
+    yes: 'step003',
     prompts: [{
       text: `No, I need to take my pill.`,
       target: 'step002a'
@@ -91,18 +91,18 @@ If you're going to cook on your own, you have to decide what to make. A friend, 
     text: `Medication needs to be taken on schedule, or your body might react negatively.
 Take some time now to take any pills, do any tests or injections, or apply any ointments prescribed by your doctor.
 If this is a persistent problem for you, you may want to set a smart phone alarm so you remember to take it at the same time every day.`,
-    next: 'step003'
+    yes: 'step003'
   },
 
   step003: {
     text: `Drink a glass of whatever liquid you like best. Water is ideal, but don't beat yourself up if you'd rather have tea, soda, juice, or milk. Soda will actually make you feel thirstier, but if it's easier for you, then that's okay!`,
-    next: 'step004'
+    yes: 'step004'
   },
 
   step004: {
     text: `Can you take a guess at how many hours you've slept out of the last 24?
 Everyone is an individual with different sleep schedules, but most people need 8 hours of relatively uninterrupted sleep. If you had less than that, and/or woke up frequently, and/or had nightmares, it might help you to take a nap.`,
-    next: 'step005',
+    yes: 'step005',
     prompts: [{
       text: `I need a nap.`,
       target: 'step004a'
@@ -112,7 +112,7 @@ Everyone is an individual with different sleep schedules, but most people need 8
   step004a: {
     text: `Take a nap. You can finish this self-care guide when you wake up.
 Ideally, let yourself sleep naturally, and sleep until you wake up. Obviously, this isn't always possible. Otherwise, set an alarm for yourself, with plenty of time to wake up and get yourself together between your nap and your responsibilities.`,
-    next: 'step005'
+    yes: 'step005'
   },
 
   step005: {
