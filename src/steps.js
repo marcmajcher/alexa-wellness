@@ -4,85 +4,64 @@
 /* eslint quotes: 0 */
 
 module.exports = {
+  skill_name: 'Self Care',
+  reprompt: 'Would you like to continue?',
+  resume: 'Welcome back to your self care routine. Would you like to pick up where you left off?',
+  stop: 'Good bye, and thank you for taking care of yourself.',
 
-  '000': {
+  help: {
     text: `This is meant to be an interactive flow chart for people who struggle with self care, executive dysfunction, and/or who have trouble reading internal signals. It's designed to take as much of the weight off of you as possible, so each decision is very easy and doesn't require much judgment.
-
-Set aside some time - maybe an hour total - to allow yourself to work through each step. Don't rush or skip ahead - just follow the directions. Self care is important, and you deserve to devote some time to it.
-
-You may want to go through this routine as soon as you wake up, as a preventative measure.`,
-    prompts: [
-
-      {
-        text: `I'm ready for the first question.`,
-        target: '001'
-      }
-    ]
+    Set aside some time - maybe an hour total - to allow yourself to work through each step. Don't rush or skip ahead - just follow the directions. Self care is important, and you deserve to devote some time to it.
+    You may want to go through this routine as soon as you wake up, as a preventative measure. Are you ready to begin?`,
+    reprompt: `Are you ready to begin?`,
+    next: 'step001'
   },
 
-  '001': {
+  intro: {
+    text: `I'm sorry you're not feeling well. Let's take some time to work through some steps to help you feel better. Are you ready to begin?`,
+    reprompt: `Are you ready to begin?`,
+    next: 'step001'
+  },
+
+  step001: {
     text: `Have you eaten in the last four hours?`,
-    prompts: [
-
-      {
-        text: `Yes. Next question!`,
-        target: '002'
-      },
-
-      {
+    next: 'step002',
+    prompts: [{
         text: `I could use a snack.`,
-        target: '001a'
+        target: 'step001a'
       },
 
       {
         text: `No, I need a meal.`,
-        target: '001b'
+        target: 'step001b'
       }
     ]
   },
 
-  '001a': {
+  step001a: {
     text: `When you need a snack, just pop some easy food in your mouth.
-
 If there's a specific food you want, it's okay to eat it! You don't have to eat perfectly healthy all the time-- no one does! Just also use your brain a little, and notice the quantity you're eating, and how healthy it is for you. You're probably just fine at trusting your gut and knowing what your body needs.`,
-    prompts: [
-
-      {
-        text: `Okay, I finished my snack.`,
-        target: '002'
-      }
-    ]
+    next: 'step002'
   },
 
-  '001b': {
+  step001b: {
     text: `You haven't eaten in a little while, and your body needs fuel. It's time for breakfast, lunch, or dinner.
-
 If there's a specific food you want, it's okay to eat it! You don't have to eat perfectly healthy all the time-- no one does! Just also use your brain a little, and notice the quantity you're eating, and how healthy it is for you. You're probably just fine at trusting your gut and knowing what your body needs.`,
-    prompts: [
-
-      {
-        text: `I finished my meal, and I'm ready for the next step.`,
-        target: '002'
-      },
-
-      {
-        text: `I need some help!`,
-        target: '001c'
-      }
-    ]
+    next: 'step002',
+    prompts: [{
+      text: `I need some help!`,
+      target: 'step001c'
+    }]
   },
 
-  '001c': {
+  step001c: {
     text: `Making a meal is hard for you right now, and that's okay! Everybody struggles with cooking sometimes.
-
 You have some options:
 -You can cook a meal for yourself.
 -You might have ready-made meals in the fridge.
 -You can get take-out or delivery.
 -You can go to a restaurant.
-
 Take-out, delivery, and restaurants are a little more expensive than cooking on your own, but how you spend your money is your decision. It's okay to treat yourself!
-
 If you're going to cook on your own, you have to decide what to make. A friend, partner, or family member can help with this. Here are some ideas for easy foods you can eat right now:
 -Pasta with butter, sauce, cheese, vegetables, and/or meat
 -Ramen noodles
@@ -96,105 +75,63 @@ If you're going to cook on your own, you have to decide what to make. A friend, 
 -Canned soup
 -Salad
 -Boxed mashed potatoes`,
-    prompts: [
-
-      {
-        text: `Okay, I have some food in my stomach. Time for the next question!`,
-        target: '002'
-      }
-    ]
+    next: 'step002'
   },
 
-  '002': {
+  step002: {
     text: `Have you taken any medication you need to take?`,
-    prompts: [
-
-      {
-        text: `Yes, I'm all caught up on any medication I need to take.`,
-        target: '003'
-      },
-
-      {
-        text: `No, I need to take my pill.`,
-        target: '002a'
-      }
-    ]
+    next: 'step003',
+    prompts: [{
+      text: `No, I need to take my pill.`,
+      target: 'step002a'
+    }]
   },
 
-  '002a': {
+  step002a: {
     text: `Medication needs to be taken on schedule, or your body might react negatively.
-
 Take some time now to take any pills, do any tests or injections, or apply any ointments prescribed by your doctor.
-
 If this is a persistent problem for you, you may want to set a smart phone alarm so you remember to take it at the same time every day.`,
-    prompts: [
-
-      {
-        text: `Okay, I took my medication. Next question!`,
-        target: '003'
-      }
-    ]
+    next: 'step003'
   },
 
-  '003': {
+  step003: {
     text: `Drink a glass of whatever liquid you like best. Water is ideal, but don't beat yourself up if you'd rather have tea, soda, juice, or milk. Soda will actually make you feel thirstier, but if it's easier for you, then that's okay!`,
-    prompts: [
-
-      {
-        text: `Okay, I did it.`,
-        target: '004'
-      }
-    ]
+    next: 'step004'
   },
 
-  '004': {
+  step004: {
     text: `Can you take a guess at how many hours you've slept out of the last 24?
-
 Everyone is an individual with different sleep schedules, but most people need 8 hours of relatively uninterrupted sleep. If you had less than that, and/or woke up frequently, and/or had nightmares, it might help you to take a nap.`,
-    prompts: [
-
-      {
-        text: `I am well-rested. Next question!`,
-        target: '005'
-      },
-
-      {
-        text: `I need a nap.`,
-        target: '004a'
-      }
-    ]
+    next: 'step005',
+    prompts: [{
+      text: `I need a nap.`,
+      target: 'step004a'
+    }]
   },
 
-  '004a': {
+  step004a: {
     text: `Take a nap. You can finish this self-care guide when you wake up.
-
 Ideally, let yourself sleep naturally, and sleep until you wake up. Obviously, this isn't always possible. Otherwise, set an alarm for yourself, with plenty of time to wake up and get yourself together between your nap and your responsibilities.`,
-    prompts: [
-
-      {
-        text: `Okay, I'm well-rested now.`,
-        target: '005'
-      }
-    ]
+    next: 'step005'
   },
 
-  '005': {
+  step005: {
     text: `Are you in pain?`,
     prompts: [
 
       {
         text: `No, my body feels fine.`,
-        target: '006'
+        target: 'step006'
       },
 
       {
         text: `Yes, something hurts.`,
-        target: '005a'
+        target: 'step005a'
       }
     ]
   },
 
-  '005a': {
+  step005a: {
     text: `If there is something your doctor has prescribed you for pain, you should take it or do it.
 
 For aches and pains, take an aspirin. You may also want to apply a heating pad or a cold pack on whatever hurts.
@@ -206,12 +143,12 @@ Be nice to your body, and try to do "replace" the unpleasant pain with some plea
 
       {
         text: `I am all taken care of.`,
-        target: '006'
+        target: 'step006'
       }
     ]
   },
 
-  '006': {
+  step006: {
     text: `Next we're going to deal with other types of physical discomfort you may be in.
 
 Is something about your environment distressing or uncomfortable?`,
@@ -219,77 +156,77 @@ Is something about your environment distressing or uncomfortable?`,
 
       {
         text: `Yes, my surroundings are less than ideal.`,
-        target: '006a'
+        target: 'step006a'
       },
 
       {
         text: `No, it seems fine here to me.`,
-        target: '007'
+        target: 'step007'
       }
     ]
   },
 
-  '006a': {
+  step006a: {
     text: `Are your surroundings the right temperature?`,
     prompts: [
 
       {
         text: `I'm too cold.`,
-        target: '006b'
+        target: 'step006b'
       },
 
       {
         text: `I'm too hot.`,
-        target: '006c'
+        target: 'step006c'
       },
 
       {
         text: `I'm just right.`,
-        target: '006d'
+        target: 'step006d'
       }
     ]
   },
 
-  '006b': {
+  step006b: {
     text: `If you're too cold, you can try putting on some warm clothes, using a space heater, turning up the heat in your home, putting on a blanket, and/or snuggling with a pet or another person.`,
     prompts: [
 
       {
         text: `I'm not cold anymore.`,
-        target: '006d'
+        target: 'step006d'
       }
     ]
   },
 
-  '006c': {
+  step006c: {
     text: `If you're too hot, you can try putting on cooler clothes, turning on a fan, or turning up the AC in your house.`,
     prompts: [
 
       {
         text: `Okay, I fixed it.`,
-        target: '006d'
+        target: 'step006d'
       }
     ]
   },
 
 
-  '006d': {
+  step006d: {
     text: `Are your surroundings dirty or smelly?`,
     prompts: [
 
       {
         text: `Yes, it's gross.`,
-        target: '006e'
+        target: 'step006e'
       },
 
       {
         text: `No, it's fine.`,
-        target: '006f'
+        target: 'step006f'
       }
     ]
   },
 
-  '006e': {
+  step006e: {
     text: `It's hard to feel okay in an environment that is unfriendly for whatever reason. If your surroundings aren't clean, set a timer for five minutes and take care of the biggest problems, like leftover food, pet messes, or dirty clothes.
 
 Chores can be scary and exhausting, but that's not what we're doing here. We're just taking a little five-minute clean up to make ourselves and our homes happier!`,
@@ -297,99 +234,99 @@ Chores can be scary and exhausting, but that's not what we're doing here. We're 
 
       {
         text: `Okay, I cleaned up a little!`,
-        target: '006f'
+        target: 'step006f'
       }
     ]
   },
 
-  '006f': {
+  step006f: {
     text: `Do you feel unsafe because of the people, or lack of people, in your surroundings?`,
     prompts: [
 
       {
         text: `Yes, there are too many people here, or people I don't feel comfortable with.`,
-        target: '006g'
+        target: 'step006g'
       },
 
       {
         text: `I am alone and I don't like it.`,
-        target: '006h'
+        target: 'step006h'
       },
 
       {
         text: `No, I'm good.`,
-        target: '007'
+        target: 'step007'
       }
     ]
   },
 
-  '006g': {
+  step006g: {
     text: `If you can, try to remove yourself from situations that are overwhelming or feel unsafe. If you can't relocate entirely, take frequent breaks, or tune out with headphones.`,
     prompts: [
 
       {
         text: `I did my best. On to the next step.`,
-        target: '007'
+        target: 'step007'
       }
     ]
   },
 
-  '006h': {
+  step006h: {
     text: `Being alone can feel really scary and unsafe. In reality, if you take basic precautions, you're almost certainly fine! However, getting a friend, making a phone or Skype call, playing with a pet, and/or turning on the TV or music can help.`,
     prompts: [
 
       {
         text: `I reached out to someone and I'm feeling better. I'm ready for the next step.`,
-        target: '007'
+        target: 'step007'
       }
     ]
   },
 
-  '007': {
+  step007: {
     text: `Does your body feel uncomfortable, sweaty, or dirty?`,
     prompts: [
 
       {
         text: `Yes, I feel icky, gross, or unclean.`,
-        target: '007a'
+        target: 'step007a'
       },
 
       {
         text: `No, I feel fine.`,
-        target: '008'
+        target: 'step008'
       }
     ]
   },
 
-  '007a': {
+  step007a: {
     text: `Do you have the energy and ability to take a shower?`,
     prompts: [
 
       {
         text: `Yes, I'll take a shower.`,
-        target: '007b'
+        target: 'step007b'
       },
 
       {
         text: `No, I need another solution.`,
-        target: '007c'
+        target: 'step007c'
       }
     ]
   },
 
-  '007b': {
+  step007b: {
     text: `Take a shower and get dressed in new clothes afterwards. You'll feel much better!`,
     prompts: [
 
       {
         text: `I've done that and I'm ready for the next step.`,
-        target: '008'
+        target: 'step008'
       }
     ]
   },
 
 
-  '007c': {
+  step007c: {
     text: `If you are unable to take a shower, here are some things to do instead:
 -Wash your face
 -Put on lotion
@@ -400,12 +337,12 @@ Chores can be scary and exhausting, but that's not what we're doing here. We're 
 
       {
         text: `I'm clean and I'm ready for the next step.`,
-        target: '008'
+        target: 'step008'
       }
     ]
   },
 
-  '008': {
+  step008: {
     text: `Now we've taken care of the physical reasons that you're not feeling well. Now we're going to deal with the emotional ones.
 
 Obviously, this is a general guide, and can't pinpoint your exact problem. But troubleshooting is a good practice, and we're going to do our best together.
@@ -417,17 +354,17 @@ Do you know why you're in a bad mood, or not feeling well emotionally? (Remember
 
       {
         text: `Yes, there's something on my mind.`,
-        target: '008a'
+        target: 'step008a'
       },
 
       {
         text: `No, I don't know the reason.`,
-        target: '008b'
+        target: 'step008b'
       }
 
     ]
   },
-  '008a': {
+  step008a: {
     text: `It sounds like there's something on your mind! We're going to do our best to take care of it.
 
 Set a timer for 15 minutes, and work on a solution. If it's something you can change, then great! If not, do your best to reach out to someone and talk about it.
@@ -437,74 +374,74 @@ Remember, 15 minutes and only 15! You can go back to whatever it is after we're 
 
       {
         text: `Okay, I did my best.`,
-        target: '009'
+        target: 'step009'
       }
     ]
   },
 
-  '008b': {
+  step008b: {
     text: `Sometimes, we don't know the source of our bad feelings, and that's okay. We're gonna work through this together!`,
     prompts: [
 
       {
         text: `Okay!`,
-        target: '009'
+        target: 'step009'
       }
     ]
   },
 
-  '009': {
+  step009: {
     text: `Do you feel anxious, nervous, keyed-up, paranoid, scared, or on edge?`,
     prompts: [{
         text: `Yes, I feel anxious about something specific.`,
-        target: '009a'
+        target: 'step009a'
       },
 
       {
         text: `Yes, but I don't know why.`,
-        target: '009b'
+        target: 'step009b'
       },
 
       {
         text: `No, I don't feel very anxious.`,
-        target: '010'
+        target: 'step010'
       },
 
       {
         text: `I was feeling anxious, but I did my best to take care of myself. I'm ready for the next question.`,
-        target: '010'
+        target: 'step010'
       }
     ]
   },
 
-  '009a': {
+  step009a: {
     text: `You're feeling anxious about something specific. That's okay! Set a timer for 15 minutes and do something to take care of that worry. Maybe chip away at a task that seems insurmountable. You can do it!`,
     prompts: [
 
       {
         text: `I'd like to try some grounding exercises too.`,
-        target: '009c'
+        target: 'step009c'
       },
 
       {
         text: `I feel better. Next question!`,
-        target: '010'
+        target: 'step010'
       }
     ]
   },
 
-  '009b': {
+  step009b: {
     text: `You feel generally anxious, but you don't know why. That's okay!`,
     prompts: [
 
       {
         text: `I'd like to try some grounding exercises.`,
-        target: '009c'
+        target: 'step009c'
       }
     ]
   },
 
-  '009c': {
+  step009c: {
     text: `Here are some ideas for grounding activities:
 
 -Take deep, calm breaths.
@@ -524,33 +461,33 @@ Remember, 15 minutes and only 15! You can go back to whatever it is after we're 
 
       {
         text: `Okay! I did one or more of these things, and I'm ready to move on.`,
-        target: '009'
+        target: 'step009'
       }
     ]
   },
 
-  '010': {
+  step010: {
     text: `Do you feel triggered? Are you having flashbacks? Is something traumatic or upsetting from the past weighing on your mind? Did you have a vivid nightmare?`,
     prompts: [
 
       {
         text: `Yes, I feel triggered.`,
-        target: '010a'
+        target: 'step010a'
       },
 
       {
         text: `No, I'm not feeling triggered.`,
-        target: '011'
+        target: 'step011'
       },
 
       {
         text: `I was feeling triggered, but I did my best to take care of myself. I'm ready for the next question.`,
-        target: '011'
+        target: 'step011'
       }
     ]
   },
 
-  '010a': {
+  step010a: {
     text: `If you're feeling triggered, see if there's a practical action you can take to lessen your distress. Can you block that unsafe person from your Facebook, for example?
 
 If not, reach out and tell someone safe how you're feeling. Just express yourself! Human contact works wonders when you're not feeling well emotionally.
@@ -560,54 +497,54 @@ Remember that you're here in the present, and nothing from your past can hurt yo
 
       {
         text: `Okay, I'm ready for the next question.`,
-        target: '011'
+        target: 'step011'
       },
 
       {
         text: `I'd like to try some grounding exercises.`,
-        target: '009c'
+        target: 'step009c'
       }
     ]
   },
 
-  '011': {
+  step011: {
     text: `Are you feeling dissociated, depersonalized, or derealized? Do you feel far away, foggy, or unreal? Are you not sure who you are?`,
     prompts: [
 
       {
         text: `Yes, I'm dissociated.`,
-        target: '009c'
+        target: 'step009c'
       },
 
       {
         text: `No, I don't feel like that.`,
-        target: '012'
+        target: 'step012'
       },
 
       {
         text: `I was feeling dissociated, but I did my best to take care of myself. I'm ready for the next question.`,
-        target: '012'
+        target: 'step012'
       }
     ]
   },
 
-  '012': {
+  step012: {
     text: `Are you feeling depressed, sad, or upset?`,
     prompts: [
 
       {
         text: `Yes, I'm feeling depressed.`,
-        target: '012a'
+        target: 'step012a'
       },
 
       {
         text: `No, I'm not very depressed.`,
-        target: '013'
+        target: 'step013'
       }
     ]
   },
 
-  '012a': {
+  step012a: {
     text: `Feeling depressed isn't fun, but it doesn't last forever! Don't be mad or disappointed with yourself for feeling depressed.
 
 Take 15 minutes and accomplish something small, like loading the dishwasher or making a friendship bracelet. You are not a failure, and your situation is not hopeless! You are a superhero, even if it doesn't feel like it.`,
@@ -615,28 +552,28 @@ Take 15 minutes and accomplish something small, like loading the dishwasher or m
 
       {
         text: `Okay, I've done my best to take care of myself and I'm ready for the next question.`,
-        target: '013'
+        target: 'step013'
       }
     ]
   },
 
-  '013': {
+  step013: {
     text: `Are you feeling lonely or in need of attention?`,
     prompts: [
 
       {
         text: `Yes, I'm feeling lonely.`,
-        target: '013a'
+        target: 'step013a'
       },
 
       {
         text: `No, I'm not very lonely. Next question!`,
-        target: '014'
+        target: 'step014'
       }
     ]
   },
 
-  '013a': {
+  step013a: {
     text: `Everybody feels lonely sometimes. If you're feeling lonely, there's ways to reach out to people!
 
 You can talk to someone in your house, or call someone on the phone. You can also use texting or Facebook messenger to speak to someone. You may want to talk about how you're feeling, or you may not. Anything you want to talk about is okay!
@@ -646,28 +583,28 @@ If that isn't or doesn't seem possible, you can post a general message on Facebo
 
       {
         text: `Okay, I did my best to take care of myself and I'm ready for the next question`,
-        target: '014'
+        target: 'step014'
       }
     ]
   },
 
-  '014': {
+  step014: {
     text: `Are you feeling foggy?`,
     prompts: [
 
       {
         text: `Yes, I feel foggy.`,
-        target: '014a'
+        target: 'step014a'
       },
 
       {
         text: `No, my head feels pretty clear.`,
-        target: '015'
+        target: 'step015'
       }
     ]
   },
 
-  '014a': {
+  step014a: {
     text: `If you are feeling foggy, you might need some exercise.
 
 Do you have the energy and ability to go for a walk?`,
@@ -675,28 +612,28 @@ Do you have the energy and ability to go for a walk?`,
 
       {
         text: `Yes, a walk sounds great.`,
-        target: '014b'
+        target: 'step014b'
       },
 
       {
         text: `No, a walk would be too much for me.`,
-        target: '014c'
+        target: 'step014c'
       }
     ]
   },
 
-  '014b': {
+  step014b: {
     text: `Walks are really good for both our bodies and our minds. Take a walk of whatever length you choose! You're not trying to burn calories or get to a particular destination; you're just taking a pleasant stroll. Enjoy it!`,
     prompts: [
 
       {
         text: `Okay, I am back from my walk and I'm ready for the next question.`,
-        target: '015'
+        target: 'step015'
       }
     ]
   },
 
-  '014c': {
+  step014c: {
     text: `If you can't take a walk, that's okay!
 
 Here are some alternatives:
@@ -713,39 +650,39 @@ If none of those are or seem possible, just sit outside for some fresh air!`,
 
       {
         text: `Okay, I did some exercise to the best of my ability. I'm ready for the next question.`,
-        target: '015'
+        target: 'step015'
       }
     ]
   },
 
-  '015': {
+  step015: {
     text: `Do you have pets?`,
     prompts: [
 
       {
         text: `Yes, I've got animals in my house.`,
-        target: '015a'
+        target: 'step015a'
       },
 
       {
         text: `No, no pets for me!`,
-        target: '015b'
+        target: 'step015b'
       }
     ]
   },
 
-  '015a': {
+  step015a: {
     text: `Playing with pets can be a great way to take the edge off when you're not feeling well. It doesn't matter what kind of pet you have, just take some time to interact with them. Pet your cat, take your dog outside, feed your fish, hug your lizard...`,
     prompts: [
 
       {
         text: `[Good idea! I'm ready for the next question.`,
-        target: '016'
+        target: 'step016'
       }
     ]
   },
 
-  '015b': {
+  step015b: {
     text: `Take half an hour and do whatever you want to do right now. This can be anything: crafts, watching TV, laying on the couch, taking a walk, playing Farmville... your choices are literally endless!
 
 Obviously, don't do anything that's bad for you, like feeding addictions or harming yourself or others.`,
@@ -753,12 +690,12 @@ Obviously, don't do anything that's bad for you, like feeding addictions or harm
 
       {
         text: `I did 30 minutes of fun and now I'm ready to move on to the next step.`,
-        target: '016'
+        target: 'step016'
       }
     ]
   },
 
-  '016': {
+  step016: {
     text: `We've reached the end of this self care guide.
 
 It's time to reassess. Maybe now that you've done all this self care, you feel better-- great! Maybe you don't, and that's okay too. But hopefully you've cleared things up and you know what to do next to take care of yourself.
@@ -770,7 +707,7 @@ Good luck!`,
 
       {
         text: `Restart`,
-        target: '000'
+        target: 'step000'
       }
     ]
   }

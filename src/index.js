@@ -3,26 +3,25 @@
 /* eslint-env node */
 
 const Alexa = require('alexa-sdk');
+const steps = require('./steps');
 
 const APP_ID = 'APP_ID'; // TODO replace with your app ID (OPTIONAL).
-const SKILL_NAME = 'SKILL_NAME';
-const HELP_MESSAGE = 'You can ask me for ... you can say exit ... What can I do for you?';
-const HELP_REPROMPT = 'Would you like me to...?';
-const STOP_MESSAGE = 'Good bye.';
-// const NOT_FOUND_MESSAGE = 'I don\'t know how to do that. Please ask for...';
-// const NOT_FOUND_REPROMPT = 'Would you like me to give you ...?';
+const DEFAULT_STATE = 'intro';
 
 const handlers = {
   LaunchRequest: function LaunchRequest() {
-    this.emit(':ask', HELP_MESSAGE, HELP_REPROMPT);
+    this.emit(':ask', steps.intro.text, steps.intro.reprompt);
+    this.attributes.state = DEFAULT_STATE;
   },
   SessionEndedRequest: function SessionEndedRequest() {
-    this.emit(':tell', STOP_MESSAGE);
+    this.emit(':tell', steps.stop);
   },
-  SAMPLEIntent: function SAMPLEIntent() {
-    if (true) {
-      const speechOutput = 'Test';
-      this.emit(':tellWithCard', speechOutput, SKILL_NAME, speechOutput);
+  CareIntent: function CareIntent() {
+    // this.event.request.intent.slots.SLOTNAME.value
+    // this.attributes[key]
+    const state = this.attributes.state;
+    if (state && steps[state]) {
+      this.emit(':ask', steps[state].text, steps[state].reprompt || steps.reprompt);
     }
     else {
       this.emit('LaunchRequest');
@@ -31,16 +30,21 @@ const handlers = {
     //   this.emit(':ask', NOT_FOUND_MESSAGE, NOT_FOUND_REPROMPT);
   },
   'AMAZON.HelpIntent': function HelpIntent() {
-    const speechOutput = HELP_MESSAGE;
-    const reprompt = HELP_REPROMPT;
-    this.emit(':ask', speechOutput, reprompt);
+    this.emit(':ask', steps.intro, steps.intro_reprompt);
   },
   'AMAZON.CancelIntent': function CancelIntent() {
-    this.emit(':tell', STOP_MESSAGE);
+    this.emit(':tell', steps.stop);
   },
   'AMAZON.StopIntent': function StopIntent() {
-    this.emit(':tell', STOP_MESSAGE);
-  }
+    this.emit(':tell', steps.stop);
+  },
+  'AMAZON.YesIntent': function YesIntent() {
+    const state = this.attributes.state;
+    console.log('THIS IS THE STEATE', state);
+    this.attributes.state = steps[state].next || DEFAULT_STATE;
+    this.emit('CareIntent');
+  },
+  'AMAZON.NoIntent': function NoIntent() {},
 };
 
 exports.handler = (event, context) => {
