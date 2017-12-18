@@ -5,7 +5,7 @@
 const Alexa = require('alexa-sdk');
 const steps = require('./steps');
 
-const APP_ID = 'APP_ID'; // TODO replace with your app ID (OPTIONAL).
+Alexa.appId = 'arn:aws:lambda:us-east-1:632159760450:function:alexaSelfCare';
 const DEFAULT_STATE = 'intro';
 
 const handlers = {

@@ -9,3 +9,5 @@ Set aside some time--maybe an hour total- to allow yourself to work through each
 
 You may want to go through this routine as soon as you wake up, as a preventative measure.
 ```
+
+This tool does not provide medical advice, and is for informational and educational purposes only, and is not a substitute for professional medical advice, treatment or diagnosis. Call your doctor to receive medical advice. If you think you may have a medical emergency, please dial your local emergency response phone number.

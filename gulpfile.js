@@ -34,7 +34,7 @@ gulp.task('eslint', () =>
 
 gulp.task('build', () =>
   gulp.src('src/**/*')
-  .pipe(zip('AlexaTIAIC.zip'))
+  .pipe(zip('AlexaSelfCare.zip'))
   .pipe(gulp.dest('dist'))
 );
 
