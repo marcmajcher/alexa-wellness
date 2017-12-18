@@ -26,56 +26,46 @@ module.exports = {
   step001: {
     text: `Have you eaten in the last four hours?`,
     yes: 'step002',
-    prompts: [{
-        text: `I could use a snack.`,
-        target: 'step001a'
-      },
+    no: 'step001meal'
+  },
 
-      {
-        text: `No, I need a meal.`,
-        target: 'step001b'
-      }
-    ]
+  step001meal: {
+    text: `Do you feel like you need to eat a meal?`,
+    yes: 'step001b',
+    no: 'step001snack'
+  },
+
+  step001snack: {
+    text: `Do you think you could use a snack?`,
+    yes: 'step001a',
+    no: 'step001eaten'
+  },
+
+  step001eaten: {
+    text: `Great, after eating, are you ready to go on to the next step?`,
+    yes: 'step002',
+    no: 'step001'
   },
 
   step001a: {
-    text: `When you need a snack, just pop some easy food in your mouth.
-If there's a specific food you want, it's okay to eat it! You don't have to eat perfectly healthy all the time-- no one does! Just also use your brain a little, and notice the quantity you're eating, and how healthy it is for you. You're probably just fine at trusting your gut and knowing what your body needs.`,
-    yes: 'step002'
+    text: `When you need a snack, just pop some easy food in your mouth. If there's a specific food you want, it's okay to eat it! You don't have to eat perfectly healthy all the time - no one does! Just also use your brain a little, and notice the quantity you're eating, and how healthy it is for you. You're probably just fine at trusting your gut and knowing what your body needs. Can you get a snack now?`,
+    yes: 'step001eaten'
   },
 
   step001b: {
     text: `You haven't eaten in a little while, and your body needs fuel. It's time for breakfast, lunch, or dinner.
-If there's a specific food you want, it's okay to eat it! You don't have to eat perfectly healthy all the time-- no one does! Just also use your brain a little, and notice the quantity you're eating, and how healthy it is for you. You're probably just fine at trusting your gut and knowing what your body needs.`,
-    yes: 'step002',
-    prompts: [{
-      text: `I need some help!`,
-      target: 'step001c'
-    }]
+If there's a specific food you want, it's okay to eat it! You don't have to eat perfectly healthy all the time-- no one does! Just also use your brain a little, and notice the quantity you're eating, and how healthy it is for you. You're probably just fine at trusting your gut and knowing what your body needs. Are you able to get yourself a meal?`,
+    yes: 'step001eaten',
+    no: 'step001c'
   },
 
   step001c: {
     text: `Making a meal is hard for you right now, and that's okay! Everybody struggles with cooking sometimes.
-You have some options:
--You can cook a meal for yourself.
--You might have ready-made meals in the fridge.
--You can get take-out or delivery.
--You can go to a restaurant.
-Take-out, delivery, and restaurants are a little more expensive than cooking on your own, but how you spend your money is your decision. It's okay to treat yourself!
-If you're going to cook on your own, you have to decide what to make. A friend, partner, or family member can help with this. Here are some ideas for easy foods you can eat right now:
--Pasta with butter, sauce, cheese, vegetables, and/or meat
--Ramen noodles
--Sandwiches
--Rice
--Grilled cheese (This can have meat on it, if you want!)
--A smoothie or milkshake
--Baked or fried potatoes
--Eggs, pancakes, and/or bacon
--Macaroni and cheese
--Canned soup
--Salad
--Boxed mashed potatoes`,
-    yes: 'step002'
+You have some options: You can cook a meal for yourself. You might have ready-made meals in the fridge. You can get take-out or delivery. You can go to a restaurant. Take-out, delivery, and restaurants are a little more expensive than cooking on your own, but how you spend your money is your decision. It's okay to treat yourself!
+
+If you're going to cook on your own, you have to decide what to make. A friend, partner, or family member can help with this. Here are some ideas for easy foods you can eat right now: Pasta with butter, sauce, cheese, vegetables, and/or meat; Ramen noodles; Sandwiches; Rice; Grilled cheese (This can have meat on it, if you want!); A smoothie or milkshake; Baked or fried potatoes; Eggs, pancakes, and/or bacon; Macaroni and cheese; Canned soup; Salad; or Boxed mashed potatoes. Can you get a meal now?`,
+    yes: 'step002',
+    no: 'step001'
   },
 
   step002: {
