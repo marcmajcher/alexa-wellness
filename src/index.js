@@ -5,7 +5,7 @@
 const Alexa = require('alexa-sdk');
 const steps = require('./steps');
 
-Alexa.appId = 'arn:aws:lambda:us-east-1:632159760450:function:alexaSelfCare';
+const APP_ID = 'arn:aws:lambda:us-east-1:632159760450:function:alexaSelfCare';
 const DEFAULT_STATE = 'intro';
 
 const handlers = {
@@ -50,6 +50,7 @@ const handlers = {
 exports.handler = (event, context) => {
   const alexa = Alexa.handler(event, context);
   alexa.APP_ID = APP_ID;
+  alexa.appId = APP_ID;
   alexa.registerHandlers(handlers);
   alexa.execute();
 };
