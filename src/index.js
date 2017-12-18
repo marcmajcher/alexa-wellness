@@ -10,8 +10,8 @@ const DEFAULT_STATE = 'intro';
 
 const handlers = {
   LaunchRequest: function LaunchRequest() {
-    this.emit(':ask', steps.intro.text, steps.intro.reprompt);
     this.attributes.state = DEFAULT_STATE;
+    this.emit(':ask', steps.intro.text, steps.intro.reprompt);
   },
   SessionEndedRequest: function SessionEndedRequest() {
     this.emit(':tell', steps.stop);
@@ -30,7 +30,7 @@ const handlers = {
     //   this.emit(':ask', NOT_FOUND_MESSAGE, NOT_FOUND_REPROMPT);
   },
   'AMAZON.HelpIntent': function HelpIntent() {
-    this.emit(':ask', steps.intro, steps.intro_reprompt);
+    this.emit(':ask', steps.help.text, steps.help.reprompt);
   },
   'AMAZON.CancelIntent': function CancelIntent() {
     this.emit(':tell', steps.stop);
@@ -40,7 +40,6 @@ const handlers = {
   },
   'AMAZON.YesIntent': function YesIntent() {
     const state = this.attributes.state;
-    console.log('THIS IS THE STEATE', state);
     this.attributes.state = steps[state].next || DEFAULT_STATE;
     this.emit('CareIntent');
   },
